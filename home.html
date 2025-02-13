@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELLOOOOO BABE!!</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #secondYesButton {
+            position: absolute;
+            transition: top 0.3s, left 0.3s;
+            background-color: mistyrose;
+            color: pink;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>I Have a Very Important Question to ask you!</h1>
+    <p class="question-text">Do you think you can answer me?</p>
+    <button id="yesButton">Yes</button>
+    <button id="noButton">No</button>
+    <div id="imageContainer"></div>
+    <div id="secondButtonContainer"></div>
+    <div id="messageContainer"></div>
+
+    <script>
+        document.getElementById("yesButton").addEventListener("click", function () {
+            // Hide the initial question and buttons
+            document.querySelector("h1").style.display = "none";
+            document.querySelector(".question-text").style.display = "none";
+            document.getElementById("yesButton").style.display = "none";
+            document.getElementById("noButton").style.display = "none";
+
+            // Show the GIF
+            let imageContainer = document.getElementById("imageContainer");
+            imageContainer.innerHTML = `
+                <img src="HappyCat.gif" alt="Happy dance" width="300">
+                <p>YAY! Your determination will prove this...</p>
+            `;
+
+            // Create and position the second button
+            let secondButton = document.createElement("button");
+            secondButton.id = "secondYesButton";
+            secondButton.innerText = "Catch for question!";
+            secondButton.style.position = "absolute";
+            secondButton.style.top = "50%";
+            secondButton.style.left = "50%";
+            secondButton.style.transform = "translate(-50%, -50%)";
+            document.getElementById("secondButtonContainer").appendChild(secondButton);
+
+            // Add mouseover event to move the second button
+            secondButton.addEventListener("mouseover", function () {
+                let newX = Math.random() * (window.innerWidth - 100);
+                let newY = Math.random() * (window.innerHeight - 100);
+                secondButton.style.left = newX + "px";
+                secondButton.style.top = newY + "px";
+            });
+
+            // Add click event to display a message
+            secondButton.addEventListener("click", function () {
+                document.getElementById("imageContainer").innerHTML ="";
+                document.getElementById("secondButtonContainer").innerHTML = "";
+                document.getElementById("messageContainer").innerHTML = `
+                    <p style="color: hotpi<h2 style="color: red; font-size: 32px; text-align: center;">Will you be my Valentine?</h2>
+                    <img src="VCat.gif" alt="Valentine Cat" width="400" style="display: block; margin: 0 auto;">
+                    <p style="text-align: center; font-size: 20px;">Text me the word "meow" if you want to be ٩(｡θᗨθ｡)۶</p>
+                `;
+            });
+        });
+
+        document.getElementById("noButton").addEventListener("click", function () {
+            document.getElementById("imageContainer").innerHTML = `
+                <img src="SadCat.gif" alt="Mr.Fresh" width="300">
+                <p>Mr.Fresh does not approve...</p>
+            `;
+        });
+    </script>
+</body>
+</html>
